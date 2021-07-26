@@ -22,8 +22,9 @@ public class PlayerService implements service.player.IPlayerService {
     }
 
     @Override
-    public void save(Player country) {
-        playerRepository.save(country);
+    public void save(Player player) {
+        player = null;
+        playerRepository.save(player);
     }
 
     @Override

@@ -2,6 +2,7 @@ package controller;
 
 import model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 @Component
 @RequestMapping("/players")
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class PlayerController {
 
     @Autowired
@@ -27,6 +29,7 @@ public class PlayerController {
 
     @GetMapping("/create")
     public ModelAndView showCreateForm() {
+        System.out.println("Controller");
         ModelAndView modelAndView = new ModelAndView("/player/create");
         modelAndView.addObject("countries", playerService.findAll()); // ném cho view 1 list country để tý còn làm xe nếch óp xừn
         return modelAndView;
@@ -47,18 +50,14 @@ public class PlayerController {
     }
 
     @PostMapping("/create")
-    public String create(Player player, @RequestParam MultipartFile file, BindingResult result) {
-        System.out.println(result);
-        String fileName = file.getOriginalFilename();
-        try {
+    public String create(Player player, @RequestParam MultipartFile file, BindingResult result) throws IOException {
+            System.out.println(result);
+            String fileName = file.getOriginalFilename();
             FileCopyUtils.copy(file.getBytes(),
-                    new File("/Users/daonhuanh/Downloads/Codegym/nal/" + fileName));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        player.setImage(fileName);
-        coachService.save(player);
-        return "redirect:/cities";
+                    new File("/Users/abc/Downloads/image/" + fileName));
+            player.setImage(fileName);
+//        coachService.save(player);
+            return "redirect:/cities";
     }
 
     @GetMapping("/{id}/edit")
@@ -75,7 +74,7 @@ public class PlayerController {
         String fileName = file.getOriginalFilename();
         try {
             FileCopyUtils.copy(file.getBytes(),
-                    new File("/Users/daonhuanh/Downloads/Codegym/nal/" + fileName));
+                    new File("/Users/abc/Downloads/image/" + fileName));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -85,7 +84,7 @@ public class PlayerController {
         } else {
             player.setImage(coachService.findById(id).get().getImage());
         }
-        coachService.save(player);
+//        coachService.save(player);
         return "redirect:/cities";
     }
 
@@ -98,7 +97,7 @@ public class PlayerController {
     @GetMapping("/search")
     public ModelAndView findByName(String name) {
         ModelAndView modelAndView = new ModelAndView("/player/list");
-        modelAndView.addObject("cities", coachService.findAllByName("%" + name + "%") );
+        modelAndView.addObject("cities", coachService.findAllByName("%" + name + "%"));
         return modelAndView;
     }
 

@@ -1,5 +1,7 @@
 package config;
 
+import aspect.ExceptionHandler;
+import aspect.PlayerAspect;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -25,6 +27,10 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import service.coach.CoachService;
+import service.coach.ICoachService;
+import service.player.IPlayerService;
+import service.player.PlayerService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -58,12 +64,14 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         templateResolver.setCharacterEncoding("UTF-8"); // định dạng chữ
         return templateResolver;
     }
+
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         return templateEngine;
     }
+
     @Bean
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
@@ -95,7 +103,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // loại driver đang dùng
-        dataSource.setUrl("jdbc:mysql://localhost:3306/demoJPA"); // csdl đang dùng
+        dataSource.setUrl("jdbc:mysql://localhost:3306/club"); // csdl đang dùng
         dataSource.setUsername("root"); // tài khoản sql
         dataSource.setPassword("04051990"); // mật khẩu sql
         return dataSource;
@@ -118,7 +126,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry .addResourceHandler("/**") .addResourceLocations("/assets/");
+        registry.addResourceHandler("/**").addResourceLocations("/assets/");
         registry.addResourceHandler("/abc/**") //đường dẫn ảo thay thế cho đường dẫn thật bên dưới (ngắn hơn)
                 .addResourceLocations("file:" + "/Users/abc/Downloads/image/");
     }
@@ -134,5 +142,25 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setMaxUploadSizePerFile(52428800); //kích thước tối đa
         return resolver;
+    }
+
+    @Bean
+    public PlayerAspect playerAspect() {
+        return new PlayerAspect();
+    }
+
+    @Bean
+    public ICoachService coachService() {
+        return new CoachService();
+    }
+
+    @Bean
+    public IPlayerService playerService() {
+        return new PlayerService();
+    }
+
+    @Bean
+    public ExceptionHandler exceptionHandler(){
+        return new ExceptionHandler();
     }
 }
