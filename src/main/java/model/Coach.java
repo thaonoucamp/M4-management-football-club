@@ -12,6 +12,7 @@ public class Coach {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private int age;
     private String address;
     private String image;
     private long salary;
@@ -19,9 +20,10 @@ public class Coach {
     public Coach() {
     }
 
-    public Coach(Long id, String name, String address, String image, long salary) {
+    public Coach(Long id, String name, int age, String address, String image, long salary) {
         this.id = id;
         this.name = name;
+        this.age = age;
         this.address = address;
         this.image = image;
         this.salary = salary;
@@ -41,6 +43,14 @@ public class Coach {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getAddress() {

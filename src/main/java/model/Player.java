@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Player {
     @ManyToOne
-    private Coach coach;
+    private Type type;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,6 @@ public class Player {
     private int age;
     private String address;
     private String image;
-    private String location;
     private double height;
     private double weight;
     private double BMI;
@@ -25,14 +24,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(Coach coach, Long id, String name, int age, String address, String image, String location, double height, double weight, double BMI, long salary, long bonus, String status) {
-        this.coach = coach;
+    public Player(Type type, Long id, String name, int age, String address, String image, double height, double weight, double BMI, long salary, long bonus, String status) {
+        this.type = type;
         this.id = id;
         this.name = name;
         this.age = age;
         this.address = address;
         this.image = image;
-        this.location = location;
         this.height = height;
         this.weight = weight;
         this.BMI = BMI;
@@ -41,12 +39,12 @@ public class Player {
         this.status = status;
     }
 
-    public Coach getCoach() {
-        return coach;
+    public Type getType() {
+        return type;
     }
 
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public Long getId() {
@@ -87,14 +85,6 @@ public class Player {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public double getHeight() {

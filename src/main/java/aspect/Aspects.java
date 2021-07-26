@@ -6,11 +6,10 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
-public class PlayerAspect {
+public class Aspects {
 
     @Pointcut(value = "within(controller.*)")
     public void executeController(){
-
     }
 
     @Before(value = "executeController()")
