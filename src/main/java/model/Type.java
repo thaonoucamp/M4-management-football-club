@@ -1,24 +1,26 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "types")
 public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String symbol;
+    private String description;
 
     public Type() {
     }
 
-    public Type(Long id, String name) {
+    public Type(Long id, String name, String symbol, String description) {
         this.id = id;
         this.name = name;
+        this.symbol = symbol;
+        this.description = description;
     }
 
     public Long getId() {
@@ -35,5 +37,21 @@ public class Type {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
