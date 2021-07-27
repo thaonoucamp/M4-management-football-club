@@ -4,11 +4,10 @@ import model.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.TypeRepository;
-import service.IGeneralService;
 
 import java.util.Optional;
 @Service
-public class TypeService implements IGeneralService<Type> {
+public class TypeService implements ITypeService<Type> {
 
     @Autowired
     private TypeRepository typeRepository;
