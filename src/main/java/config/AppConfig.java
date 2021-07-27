@@ -27,6 +27,9 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import repository.ICoachRepository;
+import service.coach.CoachService;
+import service.coach.ICoachService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -101,7 +104,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // loại driver đang dùng
         dataSource.setUrl("jdbc:mysql://localhost:3306/club"); // csdl đang dùng
         dataSource.setUsername("root"); // tài khoản sql
-        dataSource.setPassword("04051990"); // mật khẩu sql
+        dataSource.setPassword("123456"); // mật khẩu sql
         return dataSource;
     }
 
@@ -150,10 +153,6 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return new CoachService();
     }
 
-    @Bean
-    public IPlayerService playerService() {
-        return new PlayerService();
-    }
 
     @Bean
     public ExceptionHandler exceptionHandler(){
