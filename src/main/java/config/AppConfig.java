@@ -29,6 +29,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import service.player.IPlayerService;
+import service.player.PlayerService;
 import service.type.TypeService;
 import service.club.ClubService;
 import service.club.IClubService;
@@ -153,7 +155,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public IClubService clubService() {
         return new ClubService();
     }
-
+    @Bean
+    public IPlayerService playerService(){
+        return new PlayerService();
+    }
 
     @Bean
     public ExceptionHandler exceptionHandler(){

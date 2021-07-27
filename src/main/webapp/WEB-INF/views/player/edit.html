@@ -55,7 +55,11 @@
           </tr>
           <tr>
             <td>Type</td>
-            <td><input type="text" th:field="${player.type.name}"></td>
+            <td>
+              <select name="type" id="">
+                <option th:each="type :${types}" th:text="${type.name}" th:value="${type.id}"></option>
+              </select>
+            </td>
           </tr>
         </table>
         <button class="btn btn-primary" type="submit">Edit</button>
