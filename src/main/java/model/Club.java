@@ -8,13 +8,23 @@ public class Club {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String logo;
 
     public Club() {
     }
 
-    public Club(Long id, String name) {
+    public Club(Long id, String name, String logo) {
         this.id = id;
         this.name = name;
+        this.logo = logo;
+    }
+
+    public String getLogo(){
+        return logo;
+    }
+
+    public void setLogo(String logo){
+        this.logo = logo;
     }
 
     public Long getId() {

@@ -1,0 +1,26 @@
+!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h3>Edit Club</h3>
+<p>
+    <a th:href="@{/club}">
+        Back to club list
+    </a>
+</p>
+<div>
+    <form action="#" th:action="@{/club/update}" th:object="${club}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <label>Logo</label>
+            <input type="email" th:field="*{logo}"/>
+        </div>
+        <input type="submit" value="Edit"/>
+    </form>
+</div>
+</body>
+</html>

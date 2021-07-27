@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h3>View Club</h3>
+<p>
+  <a th:href="@{/club}">
+    Back to club list
+  </a>
+</p>
+<div align="center">
+  <table border="1" cellpadding="5">
+    <div>
+      <label>Name :</label>
+      <label th:text="${club.name}"></label>
+    </div>
+    <div>
+      <label>Logo :</label>
+      <label th:text="${club.logo}"></label>
+    </div>
+  </table>
+</div>
+</body>
+</html>
