@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/layout :: head">
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div class="container">
-    <!--th:replace: thay thế thẻ hiện tại bằng thẻ có tên tương ứng được khai báo fragment-->
-    <div th:replace="/layout :: top"></div>
-    <div th:replace="/layout :: menu"></div>
-    <div class="row mt-3">
-        <div th:replace="/layout :: taskbar"></div>
-        <div class="col-7">
-            <div class="row">
-                <div class="col-6">
-                    <img th:src="@{'/nhuanh/'+${club.logo}}" alt="" width="100%">
-                </div>
-            </div>
-        </div>
-        <div th:replace="/layout :: adv"></div>
+<h3>View Club</h3>
+<p>
+  <a th:href="@{/club}">
+    Back to club list
+  </a>
+</p>
+<div align="center">
+  <table border="1" cellpadding="5">
+    <div>
+      <label>Name :</label>
+      <label th:text="${club.name}"></label>
     </div>
-    <div th:replace="/layout :: footer"></div>
+    <div>
+      <label>Logo :</label>
+      <label th:text="${club.logo}"></label>
+    </div>
+  </table>
 </div>
 </body>
 </html>

@@ -8,8 +8,8 @@ service/IGeneralService.java
  service.IGeneralService
 model/Type.java
  model.Type
-service/club/IClubService.java
- service.club.IClubService
+model/Club.java
+ model.Club
 aspect/ExceptionHandler.java
  aspect.ExceptionHandler
 aspect/Aspects.java
@@ -18,15 +18,15 @@ model/Player.java
  model.Player
 repository/IClubRepository.java
  repository.IClubRepository
-controller/ClubController.java
- controller.ClubController
-fomatter/ClubFormatter.java
- fomatter.ClubFormatter
-model/Club.java
- model.Club
-config/AppConfig.java
- config.AppConfig
-service/club/ClubService.java
- service.club.ClubService
 config/AppInit.java
  config.AppInit
+service/club/IClubService.java
+ service.club.IClubService
+service/club/ClubService.java
+ service.club.ClubService
+fomatter/ClubFormatter.java
+ fomatter.ClubFormatter
+config/AppConfig.java
+ config.AppConfig
+controller/ClubController.java
+ controller.ClubController

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h3>Add Club</h3>
+    <p>
+        <a th:href="@{/home}">
+            Back to clubs list
+        </a>
+    </p>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="club,clubStat : ${clubs}">
+            <td th:text="${club.getName()}"></td>
+            <td th:text="${club.getLogo()}"></td>
+
+            <td>
+                <a th:href="@{/product/{id}/edit(id=${club.getId()})}">edit</a>
+            </td>
+            <td>
+                <a th:href="@{/product/{id}/delete(id=${club.getId()})}">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

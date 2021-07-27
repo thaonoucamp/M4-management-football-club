@@ -4,6 +4,8 @@ import model.Club;
 import org.springframework.stereotype.Service;
 import repository.IClubRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,5 +30,16 @@ public class ClubService implements IClubService {
     @Override
     public void delete(Long id) {
         clubRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Club> findByName(String name) {
+        List<Club> list = new ArrayList<>();
+        for (Club club : clubRepository.findAll()) {
+            if (club.getName().equals(name)) {
+                list.add(club);
+            }
+        }
+        return list;
     }
 }
