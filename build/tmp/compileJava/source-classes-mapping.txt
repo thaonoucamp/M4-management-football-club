@@ -1,32 +1,42 @@
 controller/PlayerController.java
  controller.PlayerController
+fomatter/TypeFormatter.java
+ fomatter.TypeFormatter
+service/type/TypeService.java
+ service.type.TypeService
+repository/TypeRepository.java
+ repository.TypeRepository
 model/Coach.java
  model.Coach
+repository/IClubRepository.java
+ repository.IClubRepository
 controller/CoachController.java
  controller.CoachController
 service/IGeneralService.java
  service.IGeneralService
 model/Type.java
  model.Type
-model/Club.java
- model.Club
-aspect/ExceptionHandler.java
- aspect.ExceptionHandler
-aspect/Aspects.java
- aspect.Aspects
-model/Player.java
- model.Player
-repository/IClubRepository.java
- repository.IClubRepository
-config/AppInit.java
- config.AppInit
 service/club/IClubService.java
  service.club.IClubService
-service/club/ClubService.java
- service.club.ClubService
-fomatter/ClubFormatter.java
- fomatter.ClubFormatter
-config/AppConfig.java
- config.AppConfig
 controller/ClubController.java
  controller.ClubController
+aspect/ExceptionHandler.java
+ aspect.ExceptionHandler
+fomatter/ClubFormatter.java
+ fomatter.ClubFormatter
+controller/TypeController.java
+ controller.TypeController
+model/Club.java
+ model.Club
+config/AppConfig.java
+ config.AppConfig
+service/club/ClubService.java
+ service.club.ClubService
+model/Player.java
+ model.Player
+repository/CoachRepository.java
+ repository.CoachRepository
+config/AppInit.java
+ config.AppInit
+aspect/Aspects.java
+ aspect.Aspects
