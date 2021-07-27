@@ -2,6 +2,7 @@ package config;
 
 import aspect.ExceptionHandler;
 import aspect.Aspects;
+import fomatter.ClubFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -27,6 +28,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import service.club.ClubService;
+import service.club.IClubService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -129,7 +132,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new PlayerFormatter(applicationContext.getBean(PlayerService.class)));
+//        registry.addFormatter(new ClubFormatter(applicationContext.getBean(ClubService.class)));
     }
 
 
@@ -146,14 +149,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     @Bean
-    public ICoachService coachService() {
-        return new CoachService();
+    public IClubService clubService() {
+        return new ClubService();
     }
 
-    @Bean
-    public IPlayerService playerService() {
-        return new PlayerService();
-    }
 
     @Bean
     public ExceptionHandler exceptionHandler(){
