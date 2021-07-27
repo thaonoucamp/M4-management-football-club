@@ -129,12 +129,6 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
                 .addResourceLocations("file:" + "/Users/abc/Downloads/image/");
     }
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new PlayerFormatter(applicationContext.getBean(PlayerService.class)));
-    }
-
-
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getResolver() throws IOException {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
@@ -154,7 +148,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ExceptionHandler exceptionHandler(){
         return new ExceptionHandler();
     }
-    public void addFormatter(FormatterRegistry registry){
+    public void addFormatters(FormatterRegistry registry){
         registry.addFormatter(new TypeFormatter(applicationContext.getBean(TypeService.class)));
     }
 }
