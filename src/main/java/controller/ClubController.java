@@ -16,64 +16,64 @@ import service.club.IClubService;
 
 @Controller
 public class ClubController {
-//
-//    @Autowired
-//    private IClubService clubService;
-//
-//    @GetMapping("/create")
-//    public ModelAndView showFormCreate(){
-//        ModelAndView modelAndView = new ModelAndView("/club/create");
-//        return modelAndView;
-//    }
-//
-//    @PostMapping("/create")
-//    public ModelAndView create(Club club){
-//        clubService.save(club);
-//        ModelAndView modelAndView = new ModelAndView("/club/home");
-//        return modelAndView;
-//    }
-//
-//    @PostMapping("/save")
-//    public String save(Club club) {
-//        clubService.save(club);
-//        return "redirect:/club/home";
-//    }
-//
-//    @GetMapping("/{id}/edit")
-//    public String edit(@PathVariable Long id, Model model) {
-//        model.addAttribute("club", clubService.findById(id));
-//        return "/club/edit";
-//    }
-//
-//    @PostMapping("/update")
-//    public String update(Club club) {
-//        clubService.save(club);
-//        return "redirect:/club/home";
-//    }
-//
-//    @GetMapping("/{id}/delete")
-//    public String delete(@PathVariable Long id, Model model) {
-//        model.addAttribute("club", clubService.findById(id));
-//        return "/club/delete";
-//    }
-//
-//    @PostMapping("/delete")
-//    public String delete(Club club, RedirectAttributes redirect) {
-//        clubService.delete(club.getId());
-//        redirect.addFlashAttribute("success", "Removed club successfully!");
-//        return "redirect:/club/home";
-//    }
-//
-//    @GetMapping("/{id}/view")
-//    public String view(@PathVariable Long id, Model model) {
-//        model.addAttribute("club", clubService.findById(id));
-//        return "/club/view";
-//    }
-//
-//    @GetMapping("/search")
-//    public String findByName(@RequestParam String name, Model model){
-//        model.addAttribute("club", clubService.findByName(name));
-//        return "/club/home";
-//    }
+
+    @Autowired
+    private IClubService clubService;
+
+    @GetMapping("/create")
+    public ModelAndView showFormCreate(){
+        ModelAndView modelAndView = new ModelAndView("/club/create");
+        return modelAndView;
+    }
+
+    @PostMapping("/create")
+    public ModelAndView create(Club club){
+        clubService.save(club);
+        ModelAndView modelAndView = new ModelAndView("/club/home");
+        return modelAndView;
+    }
+
+    @PostMapping("/save")
+    public String save(Club club) {
+        clubService.save(club);
+        return "redirect:/club/home";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        model.addAttribute("club", clubService.findById(id));
+        return "/club/edit";
+    }
+
+    @PostMapping("/update")
+    public String update(Club club) {
+        clubService.save(club);
+        return "redirect:/club/home";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, Model model) {
+        model.addAttribute("club", clubService.findById(id));
+        return "/club/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(Club club, RedirectAttributes redirect) {
+        clubService.delete(club.getId());
+        redirect.addFlashAttribute("success", "Removed club successfully!");
+        return "redirect:/club/home";
+    }
+
+    @GetMapping("/{id}/view")
+    public String view(@PathVariable Long id, Model model) {
+        model.addAttribute("club", clubService.findById(id));
+        return "/club/view";
+    }
+
+    @GetMapping("/search")
+    public String findByName(@RequestParam String name, Model model){
+        model.addAttribute("club", clubService.findByName(name));
+        return "/club/home";
+    }
 
 }

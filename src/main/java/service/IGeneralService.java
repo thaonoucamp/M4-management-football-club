@@ -11,5 +11,4 @@ public interface IGeneralService<T> {
 
     void delete(Long id);
 
-    Iterable<T>findByName(String name);
 }
