@@ -23,29 +23,20 @@
                             <th>Age</th>
                             <th>Address</th>
                             <th>image</th>
-                            <th>Height</th>
-                            <th>Weight</th>
                             <th>Salary</th>
-                            <th>Bonus</th>
-                            <th>Status</th>
-                            <th>Type</th>
+
                         </tr>
-                        <tr th:object="${player}">
-                            <td th:text="${player.name}"></td>
-                            <td th:text="${player.age}"></td>
-                            <td th:text="${player.address}"></td>
-                            <td th:text="${player.image}"></td>
-                            <td th:text="${player.height}"></td>
-                            <td th:text="${player.weight}"></td>
-                            <td th:text="${player.salary}"></td>
-                            <td th:text="${player.bonus}"></td>
-                            <td th:text="${player.status}"></td>
-                            <td th:text="${player.type.name}"></td>
-                        </tr>
+                        <tr th:object="${coach}">
+                            <td th:text="${coach.name}"></td>
+                            <td th:text="${coach.age}"></td>
+                            <td th:text="${coach.address}"></td>
+                            <td th:text="${coach.image}"></td>
+                            <td th:text="${coach.salary}"></td>
+
                     </table></div></div>
                     <div class="row">
-                        <div class="col-6"><button class="btn btn-danger"  type="submit">Delete</button></div>
-                        <div class="col-6">  <a class="btn btn-warning" th:href="@{/players/home}">Cancel</a></div>
+                        <div class="col-3"><button class="btn btn-danger"  type="submit">Delete</button></div>
+                        <div class="col-3">  <a class="btn btn-warning" th:href="@{/coaches/list}">Cancel</a></div>
                     </div>
                 </div>
             </form>
