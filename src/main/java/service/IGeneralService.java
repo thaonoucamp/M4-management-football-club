@@ -11,4 +11,5 @@ public interface IGeneralService<T> {
 
     void delete(Long id);
 
+
 }
