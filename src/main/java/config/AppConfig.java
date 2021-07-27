@@ -3,13 +3,16 @@ package config;
 import aspect.ExceptionHandler;
 import aspect.Aspects;
 import fomatter.ClubFormatter;
+import fomatter.TypeFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.FormatterRegistry;
@@ -30,6 +33,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import service.club.ClubService;
 import service.club.IClubService;
+import service.type.TypeService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,7 +47,11 @@ import java.util.Properties;
 @EnableJpaRepositories("repository") // đánh dấu dự án có sử dụng jpa repository và đường dẫn
 @ComponentScan("controller")// cho Spring biết phải tìm controller ở đâu
 @EnableSpringDataWebSupport
+@PropertySource("classpath:image.properties")
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
+
+    @Value("${fileUpload}")
+    private String fileUpload;
 
     private ApplicationContext applicationContext; // khai báo 1 Spring Container
 
@@ -122,26 +130,24 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return properties;
     }
 
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("/assets/");
-        registry.addResourceHandler("/abc/**") //đường dẫn ảo thay thế cho đường dẫn thật bên dưới (ngắn hơn)
-                .addResourceLocations("file:" + "/Users/abc/Downloads/image/");
-    }
+        registry.addResourceHandler("/image/**")
+                .addResourceLocations("file:" + fileUpload);
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new ClubFormatter(applicationContext.getBean(ClubService.class)));
     }
-
 
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getResolver() throws IOException {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setMaxUploadSizePerFile(52428800); //kích thước tối đa
+        resolver.setMaxUploadSizePerFile(5242880);
         return resolver;
     }
+
+//    @Override
+//    public void addFormatters(FormatterRegistry registry) {
+////        registry.addFormatter(new ClubFormatter(applicationContext.getBean(ClubService.class)));
+//    }
 
     @Bean
     public Aspects aspect() {
@@ -155,7 +161,14 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
 
     @Bean
+    public TypeService typeService(){
+        return new TypeService();
+    }
+    @Bean
     public ExceptionHandler exceptionHandler(){
         return new ExceptionHandler();
+    }
+    public void addFormatters(FormatterRegistry registry){
+        registry.addFormatter(new TypeFormatter(applicationContext.getBean(TypeService.class)));
     }
 }

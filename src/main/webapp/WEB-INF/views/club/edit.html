@@ -1,15 +1,16 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<h3>Edit Club</h3>
-<p>
-    <a th:href="@{/club}">
-        Back to club list
-    </a>
-</p>
-<div>
+
+<div th:border="1" align="center">
+    <h3>Edit Club</h3>
+    <p>
+        <a th:href="@{/club/home}">
+            Back to club home
+        </a>
+    </p>
     <form action="#" th:action="@{/club/update}" th:object="${club}"
-          method="POST" novalidate="novalidate">
+          method="POST" novalidate="novalidate" enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}"/>
         <div>
             <label>Name</label>
@@ -17,7 +18,8 @@
         </div>
         <div>
             <label>Logo</label>
-            <input type="email" th:field="*{logo}"/>
+            <img width="100" height="100" th:src="@{'/image/' + ${club.logo}}" alt="">
+            <input type="file" name="fileImage">
         </div>
         <input type="submit" value="Edit"/>
     </form>

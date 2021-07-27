@@ -3,12 +3,12 @@
 <body>
 <h3>Remove Club</h3>
 <p>
-    <a th:href="@{/club}">
+    <a th:href="@{/club/home}">
         Back to club list
     </a>
 </p>
 <div>
-    <form action="#" th:action="@{/club/delete}" th:object="${club}"
+    <form th:action="@{/club/delete}" th:object="${club}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
