@@ -28,7 +28,15 @@ repository/TypeRepository.java
  repository.TypeRepository
 fomatter/TypeFormatter.java
  fomatter.TypeFormatter
-config/AppConfig.java
- config.AppConfig
+repository/IClubRepository.java
+ repository.IClubRepository
+service/club/IClubService.java
+ service.club.IClubService
 config/AppInit.java
  config.AppInit
+config/AppConfig.java
+ config.AppConfig
+service/club/ClubService.java
+ service.club.ClubService
+controller/ClubController.java
+ controller.ClubController

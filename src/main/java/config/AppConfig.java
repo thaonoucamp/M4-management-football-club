@@ -148,6 +148,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ExceptionHandler exceptionHandler(){
         return new ExceptionHandler();
     }
+
     public void addFormatters(FormatterRegistry registry){
         registry.addFormatter(new TypeFormatter(applicationContext.getBean(TypeService.class)));
     }
