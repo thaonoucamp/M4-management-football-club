@@ -3,6 +3,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "player")
 public class Player {
     @ManyToOne
     private Type type;
@@ -24,9 +25,8 @@ public class Player {
     public Player() {
     }
 
-    public Player(Type type, Long id, String name, int age, String address, String image, double height, double weight, double BMI, long salary, long bonus, String status) {
+    public Player(Type type, String name, int age, String address, String image, double height, double weight, double BMI, long salary, long bonus, String status) {
         this.type = type;
-        this.id = id;
         this.name = name;
         this.age = age;
         this.address = address;

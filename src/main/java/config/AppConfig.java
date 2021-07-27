@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.FormatterRegistry;
@@ -27,6 +28,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import service.player.IPlayerService;
+import service.player.PlayerService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,6 +43,7 @@ import java.util.Properties;
 @EnableJpaRepositories("repository") // đánh dấu dự án có sử dụng jpa repository và đường dẫn
 @ComponentScan("controller")// cho Spring biết phải tìm controller ở đâu
 @EnableSpringDataWebSupport
+@EnableAspectJAutoProxy// cho phép sử dụng AOP trong spring
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext; // khai báo 1 Spring Container
@@ -60,14 +64,12 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         templateResolver.setCharacterEncoding("UTF-8"); // định dạng chữ
         return templateResolver;
     }
-
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         return templateEngine;
     }
-
     @Bean
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
@@ -99,9 +101,9 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // loại driver đang dùng
-        dataSource.setUrl("jdbc:mysql://localhost:3306/club"); // csdl đang dùng
+        dataSource.setUrl("jdbc:mysql://localhost:3306/qldb"); // csdl đang dùng
         dataSource.setUsername("root"); // tài khoản sql
-        dataSource.setPassword("04051990"); // mật khẩu sql
+        dataSource.setPassword("123456"); // mật khẩu sql
         return dataSource;
     }
 
@@ -120,17 +122,17 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("/assets/");
-        registry.addResourceHandler("/abc/**") //đường dẫn ảo thay thế cho đường dẫn thật bên dưới (ngắn hơn)
-                .addResourceLocations("file:" + "/Users/abc/Downloads/image/");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry .addResourceHandler("/**") .addResourceLocations("/assets/");
+//        registry.addResourceHandler("/nhuanh/**") //đường dẫn ảo thay thế cho đường dẫn thật bên dưới (ngắn hơn)
+//                .addResourceLocations("file:" + "/Users/daonhuanh/Downloads/Codegym/nal/");
+//    }
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new PlayerFormatter(applicationContext.getBean(PlayerService.class)));
-    }
+//    @Override
+//    public void addFormatters(FormatterRegistry registry) {
+//        registry.addFormatter(new CountryFormatter(applicationContext.getBean(CountryService.class)));
+//    }
 
 
     @Bean(name = "multipartResolver")
@@ -141,22 +143,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     @Bean
-    public Aspects aspect() {
-        return new Aspects();
-    }
-
-    @Bean
-    public ICoachService coachService() {
-        return new CoachService();
-    }
-
-    @Bean
-    public IPlayerService playerService() {
+    public IPlayerService playerService(){
         return new PlayerService();
-    }
-
-    @Bean
-    public ExceptionHandler exceptionHandler(){
-        return new ExceptionHandler();
     }
 }
