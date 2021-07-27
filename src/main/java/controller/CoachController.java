@@ -11,5 +11,4 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/coaches")
 public class CoachController {
-
 }

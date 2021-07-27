@@ -1,6 +1,7 @@
 package service.club;
 
 import model.Club;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.IClubRepository;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class ClubService implements IClubService {
+    @Autowired
     private IClubRepository clubRepository;
 
     @Override

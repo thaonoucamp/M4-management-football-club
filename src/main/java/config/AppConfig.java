@@ -29,9 +29,14 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import repository.ITypeRepository;
+import service.player.IPlayerService;
+import service.player.PlayerService;
 import service.type.TypeService;
 import service.club.ClubService;
 import service.club.IClubService;
+import service.user.IUserService;
+import service.user.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,7 +47,7 @@ import java.util.Properties;
 @Configuration // đánh đấu đây là file cấu hình dự án Spring
 @EnableWebMvc // đánh dấu dự án này hỗ trợ mô hình MVC
 @EnableTransactionManagement // đánh dấu dự án có hỗ trợ transaction
-@EnableJpaRepositories("repository") // đánh dấu dự án có sử dụng jpa repository và đường dẫn
+@EnableJpaRepositories("repository")
 @ComponentScan("controller")// cho Spring biết phải tìm controller ở đâu
 @EnableSpringDataWebSupport
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
@@ -59,10 +64,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views"); // tiền tố
+        templateResolver.setPrefix("/WEB-INF/views");
         templateResolver.setSuffix(".html"); // hậu tố
-        templateResolver.setTemplateMode(TemplateMode.HTML); // kiểu views
-        templateResolver.setCharacterEncoding("UTF-8"); // định dạng chữ
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
 
@@ -104,7 +109,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // loại driver đang dùng
-        dataSource.setUrl("jdbc:mysql://localhost:3306/club"); // csdl đang dùng
+        dataSource.setUrl("jdbc:mysql://localhost:3306/qldb"); // csdl đang dùng
         dataSource.setUsername("root"); // tài khoản sql
         dataSource.setPassword("123456"); // mật khẩu sql
         return dataSource;
@@ -128,7 +133,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("/assets/");
-        registry.addResourceHandler("/abc/**") //đường dẫn ảo thay thế cho đường dẫn thật bên dưới (ngắn hơn)
+        registry.addResourceHandler("/abc/**")
                 .addResourceLocations("file:" + "/Users/abc/Downloads/image/");
     }
 
@@ -139,6 +144,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         resolver.setMaxUploadSizePerFile(52428800); //kích thước tối đa
         return resolver;
     }
+
+//    @Bean
+//    public ITypeRepository typeRepository(){
+//        return new
+//    }
 
     @Bean
     public Aspects aspect() {
@@ -154,6 +164,15 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return new ClubService();
     }
 
+    @Bean
+    public IPlayerService playerService(){
+        return new PlayerService();
+    }
+
+    @Bean
+    public IUserService userService(){
+        return new UserService();
+    }
 
     @Bean
     public ExceptionHandler exceptionHandler(){

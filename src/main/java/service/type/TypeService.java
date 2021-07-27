@@ -3,14 +3,16 @@ package service.type;
 import model.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.TypeRepository;
+import repository.ITypeRepository;
 
 import java.util.Optional;
 @Service
 public class TypeService implements ITypeService<Type> {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private TypeRepository typeRepository;
+    private ITypeRepository typeRepository;
+
     @Override
     public Iterable<Type> findAll() {
         return typeRepository.findAll();
@@ -24,7 +26,6 @@ public class TypeService implements ITypeService<Type> {
     @Override
     public void save(Type type) {
         typeRepository.save(type);
-        typeRepository.flush();
     }
 
     @Override
