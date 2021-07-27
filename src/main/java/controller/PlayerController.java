@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-git
+
 
 @Component
 @RequestMapping("/players")
