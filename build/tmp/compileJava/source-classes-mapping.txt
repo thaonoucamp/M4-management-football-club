@@ -20,8 +20,8 @@ aspect/ExceptionHandler.java
  aspect.ExceptionHandler
 controller/TypeController.java
  controller.TypeController
-config/AppInit.java
- config.AppInit
+controller/PlayerController.java
+ controller.PlayerController
 service/club/ClubService.java
  service.club.ClubService
 model/Player.java
@@ -46,5 +46,5 @@ model/Club.java
  model.Club
 config/AppConfig.java
  config.AppConfig
-controller/PlayerController.java
- controller.PlayerController
+config/AppInit.java
+ config.AppInit

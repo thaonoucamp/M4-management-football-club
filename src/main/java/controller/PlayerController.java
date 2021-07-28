@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import service.player.IPlayerService;
 import service.type.ITypeService;
 
+import java.util.Optional;
+
 //@Component
 @RequestMapping("/players")
 //@EnableAspectJAutoProxy(proxyTargetClass = true)
@@ -25,6 +27,7 @@ public class PlayerController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("/player/home");
         modelAndView.addObject("players",playerService.findAll());
+        modelAndView.addObject("types",typeService.findAll());
         return modelAndView;
     }
 
@@ -71,6 +74,13 @@ public class PlayerController {
         ModelAndView modelAndView = new ModelAndView("/player/home");
         playerService.save(player);
         modelAndView.addObject("players",playerService.findAll());
+        return modelAndView;
+    }
+    @GetMapping("/info/{id}")
+    public ModelAndView info(@PathVariable Long id){
+        Optional<Player>informationPlayer=playerService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("/player/home");
+        modelAndView.addObject("infoPlayer",informationPlayer.get());
         return modelAndView;
     }
 }

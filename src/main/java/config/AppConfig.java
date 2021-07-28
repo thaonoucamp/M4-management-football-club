@@ -131,7 +131,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("/assets/");
         registry.addResourceHandler("/abc/**") //đường dẫn ảo thay thế cho đường dẫn thật bên dưới (ngắn hơn)
-                .addResourceLocations("file:" + "/Users/abc/Downloads/image/");
+                .addResourceLocations("file:" + "\\Users\\ADMIN\\Desktop\\CSM4\\M4-management-football-club\\src\\main\\webapp\\WEB-INF\\image\\");
     }
 
 
