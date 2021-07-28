@@ -78,9 +78,9 @@ public class PlayerController {
     }
     @GetMapping("/info/{id}")
     public ModelAndView info(@PathVariable Long id){
-        Optional<Player>informationPlayer=playerService.findById(id);
-        ModelAndView modelAndView = new ModelAndView("/player/home");
-        modelAndView.addObject("infoPlayer",informationPlayer.get());
+        Optional<Player>player=playerService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("/player/view");
+        modelAndView.addObject("player",player);
         return modelAndView;
     }
 }

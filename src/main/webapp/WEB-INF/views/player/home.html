@@ -65,9 +65,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Team</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Training</a>
-                </li>
             </ul>
             <form class="d-flex" action="/types/search" method="get">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
@@ -133,7 +130,7 @@
                                     <h6 th:text="${player.address}"></h6>
                                     <h6 th:text="${player.status}"></h6>
                                     <p class="mg-top-15">
-                                        <a href="#" class="btn btn-info">
+                                        <a th:href="@{/players/info/__${player.id}__}" class="btn btn-info">
                                         View ProFile<img src="/abc/info.png/" height="20" width="20"/>
                                         </a>
                                     </p>
