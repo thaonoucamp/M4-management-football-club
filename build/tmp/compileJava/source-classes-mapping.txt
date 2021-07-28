@@ -6,15 +6,15 @@ aspect/ExceptionHandler.java
  aspect.ExceptionHandler
 config/AppInit.java
  config.AppInit
+model/Coach.java
+ model.Coach
+controller/CoachController.java
+ controller.CoachController
 repository/ICoachRepository.java
  repository.ICoachRepository
 service/coach/ICoachService.java
  service.coach.ICoachService
 config/AppConfig.java
  config.AppConfig
-model/Coach.java
- model.Coach
 service/coach/CoachService.java
  service.coach.CoachService
-controller/CoachController.java
- controller.CoachController

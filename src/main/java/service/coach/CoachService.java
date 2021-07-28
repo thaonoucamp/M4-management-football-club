@@ -2,9 +2,13 @@ package service.coach;
 
 import model.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import repository.ICoachRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 @Service
 public class CoachService implements ICoachService {
@@ -32,7 +36,13 @@ public class CoachService implements ICoachService {
     }
 
     @Override
+    public Page<Coach> findAll(Pageable pageable) {
+       return coachRepository.findAll(pageable);
+    }
+
+    @Override
     public Iterable<Coach> findAllByName(String name) {
         return coachRepository.findAllByName(name);
     }
+
 }
